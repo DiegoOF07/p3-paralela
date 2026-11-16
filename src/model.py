@@ -5,8 +5,8 @@ from src import config
 
 
 def build_cnn_medium(input_shape=(64, 64, 3), n_classes=29, l2_reg=1e-4, rescale=False):
-    """CNN Medium from the lab. rescale=True normalizes uint8 input on the device."""
-    inputs = keras.Input(shape=input_shape, name="input")
+    """CNN Medium from the lab. rescale=True takes uint8 input and normalizes it on the device."""
+    inputs = keras.Input(shape=input_shape, dtype="uint8" if rescale else "float32", name="input")
     x = layers.Rescaling(1.0 / 255, name="rescale")(inputs) if rescale else inputs
 
     # Bloque 1
