@@ -1,0 +1,145 @@
+== E0 batch 64: reps [1, 2, 3]
+  idle baseline (15s) -> evidence/idle_E0_b64.csv
+  $ -m src.train --stage E0 --batch 64 --rep 1 --epochs 3
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1794853743.989335    6495 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+TensorFlow 2.21.0 | GPUs: none
+Found 60900 validated image filenames belonging to 29 classes.
+Found 13050 validated image filenames belonging to 29 classes.
+stage E0: batch 64, policy float32, jit_compile False, optimizer Adam
+Epoch 1/3
+952/952 - 369s - 388ms/step - accuracy: 0.8314 - loss: 0.6192
+Epoch 2/3
+952/952 - 365s - 384ms/step - accuracy: 0.9907 - loss: 0.0801
+Epoch 3/3
+952/952 - 391s - 410ms/step - accuracy: 0.9950 - loss: 0.0567 - val_accuracy: 0.9470 - val_loss: 0.1838
+epoch 1: train 401.2s, val 0.0s
+epoch 2: train 395.0s, val 0.0s
+epoch 3: train 394.7s, val 28.2s, val_acc 0.9470
+3 rows written to /mnt/c/Users/flore/OneDrive/Escritorio/2026-UVG/paralela/p3-paralela/results/runs.csv
+  E0 b64 r1: ok in 20.7 min
+  $ -m src.train --stage E0 --batch 64 --rep 2 --epochs 3
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1794854877.425344   10874 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+TensorFlow 2.21.0 | GPUs: none
+Found 60900 validated image filenames belonging to 29 classes.
+Found 13050 validated image filenames belonging to 29 classes.
+stage E0: batch 64, policy float32, jit_compile False, optimizer Adam
+Epoch 1/3
+952/952 - 368s - 387ms/step - accuracy: 0.8314 - loss: 0.6192
+Epoch 2/3
+952/952 - 367s - 385ms/step - accuracy: 0.9907 - loss: 0.0801
+Epoch 3/3
+952/952 - 381s - 401ms/step - accuracy: 0.9950 - loss: 0.0567 - val_accuracy: 0.9470 - val_loss: 0.1838
+epoch 1: train 400.7s, val 0.0s
+epoch 2: train 396.6s, val 0.0s
+epoch 3: train 395.5s, val 18.1s, val_acc 0.9470
+3 rows written to /mnt/c/Users/flore/OneDrive/Escritorio/2026-UVG/paralela/p3-paralela/results/runs.csv
+  E0 b64 r2: ok in 20.3 min
+  $ -m src.train --stage E0 --batch 64 --rep 3 --epochs 3
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1794856000.774787   14855 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+TensorFlow 2.21.0 | GPUs: none
+Found 60900 validated image filenames belonging to 29 classes.
+Found 13050 validated image filenames belonging to 29 classes.
+stage E0: batch 64, policy float32, jit_compile False, optimizer Adam
+Epoch 1/3
+952/952 - 367s - 386ms/step - accuracy: 0.8314 - loss: 0.6192
+Epoch 2/3
+952/952 - 364s - 382ms/step - accuracy: 0.9907 - loss: 0.0801
+Epoch 3/3
+952/952 - 387s - 406ms/step - accuracy: 0.9950 - loss: 0.0567 - val_accuracy: 0.9470 - val_loss: 0.1838
+epoch 1: train 396.9s, val 0.0s
+epoch 2: train 394.9s, val 0.0s
+epoch 3: train 400.5s, val 18.3s, val_acc 0.9470
+3 rows written to /mnt/c/Users/flore/OneDrive/Escritorio/2026-UVG/paralela/p3-paralela/results/runs.csv
+  E0 b64 r3: ok in 20.3 min
+== E1 batch 64: reps [1, 2, 3, 4, 5]
+  idle baseline (15s) -> evidence/idle_E1_b64.csv
+  $ -m src.train --stage E1 --batch 64 --rep 1 --epochs 3
+TensorFlow 2.21.0 | GPUs: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+Found 60900 validated image filenames belonging to 29 classes.
+Found 13050 validated image filenames belonging to 29 classes.
+stage E1: batch 64, policy float32, jit_compile False, optimizer Adam
+transfer: 3.1 MB per batch (float32), 0.74 ms, 4.26 GB/s
+Epoch 1/3
+952/952 - 59s - 62ms/step - accuracy: 0.8312 - loss: 0.6254
+Epoch 2/3
+952/952 - 53s - 56ms/step - accuracy: 0.9904 - loss: 0.0806
+Epoch 3/3
+952/952 - 63s - 66ms/step - accuracy: 0.9961 - loss: 0.0546 - val_accuracy: 0.8179 - val_loss: 1.0253
+epoch 1: train 64.1s, val 0.0s
+epoch 2: train 58.2s, val 0.0s
+epoch 3: train 56.3s, val 11.8s, val_acc 0.8179
+4 rows written to /mnt/c/Users/flore/OneDrive/Escritorio/2026-UVG/paralela/p3-paralela/results/runs.csv
+  E1 b64 r1: ok in 3.4 min
+  $ -m src.train --stage E1 --batch 64 --rep 2 --epochs 3
+TensorFlow 2.21.0 | GPUs: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+Found 60900 validated image filenames belonging to 29 classes.
+Found 13050 validated image filenames belonging to 29 classes.
+stage E1: batch 64, policy float32, jit_compile False, optimizer Adam
+transfer: 3.1 MB per batch (float32), 0.75 ms, 4.17 GB/s
+Epoch 1/3
+952/952 - 57s - 60ms/step - accuracy: 0.8301 - loss: 0.6256
+Epoch 2/3
+952/952 - 49s - 52ms/step - accuracy: 0.9897 - loss: 0.0834
+Epoch 3/3
+952/952 - 63s - 66ms/step - accuracy: 0.9957 - loss: 0.0548 - val_accuracy: 0.7868 - val_loss: 0.9045
+epoch 1: train 61.8s, val 0.0s
+epoch 2: train 54.3s, val 0.0s
+epoch 3: train 55.7s, val 11.9s, val_acc 0.7868
+4 rows written to /mnt/c/Users/flore/OneDrive/Escritorio/2026-UVG/paralela/p3-paralela/results/runs.csv
+  E1 b64 r2: ok in 3.2 min
+  $ -m src.train --stage E1 --batch 64 --rep 3 --epochs 3
+TensorFlow 2.21.0 | GPUs: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+Found 60900 validated image filenames belonging to 29 classes.
+Found 13050 validated image filenames belonging to 29 classes.
+stage E1: batch 64, policy float32, jit_compile False, optimizer Adam
+transfer: 3.1 MB per batch (float32), 0.89 ms, 3.52 GB/s
+Epoch 1/3
+952/952 - 55s - 57ms/step - accuracy: 0.8315 - loss: 0.6211
+Epoch 2/3
+952/952 - 50s - 53ms/step - accuracy: 0.9899 - loss: 0.0807
+Epoch 3/3
+952/952 - 62s - 65ms/step - accuracy: 0.9959 - loss: 0.0549 - val_accuracy: 0.9884 - val_loss: 0.0694
+epoch 1: train 59.6s, val 0.0s
+epoch 2: train 55.0s, val 0.0s
+epoch 3: train 55.1s, val 11.8s, val_acc 0.9884
+4 rows written to /mnt/c/Users/flore/OneDrive/Escritorio/2026-UVG/paralela/p3-paralela/results/runs.csv
+  E1 b64 r3: ok in 3.2 min
+  $ -m src.train --stage E1 --batch 64 --rep 4 --epochs 3
+TensorFlow 2.21.0 | GPUs: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+Found 60900 validated image filenames belonging to 29 classes.
+Found 13050 validated image filenames belonging to 29 classes.
+stage E1: batch 64, policy float32, jit_compile False, optimizer Adam
+transfer: 3.1 MB per batch (float32), 0.65 ms, 4.82 GB/s
+Epoch 1/3
+952/952 - 55s - 58ms/step - accuracy: 0.8306 - loss: 0.6249
+Epoch 2/3
+952/952 - 52s - 55ms/step - accuracy: 0.9902 - loss: 0.0811
+Epoch 3/3
+952/952 - 60s - 63ms/step - accuracy: 0.9955 - loss: 0.0567 - val_accuracy: 0.9921 - val_loss: 0.0634
+epoch 1: train 59.9s, val 0.0s
+epoch 2: train 54.8s, val 0.0s
+epoch 3: train 55.5s, val 11.8s, val_acc 0.9921
+4 rows written to /mnt/c/Users/flore/OneDrive/Escritorio/2026-UVG/paralela/p3-paralela/results/runs.csv
+  E1 b64 r4: ok in 3.2 min
+  $ -m src.train --stage E1 --batch 64 --rep 5 --epochs 3
+TensorFlow 2.21.0 | GPUs: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
+Found 60900 validated image filenames belonging to 29 classes.
+Found 13050 validated image filenames belonging to 29 classes.
+stage E1: batch 64, policy float32, jit_compile False, optimizer Adam
+transfer: 3.1 MB per batch (float32), 0.80 ms, 3.93 GB/s
+Epoch 1/3
+952/952 - 56s - 58ms/step - accuracy: 0.8302 - loss: 0.6250
+Epoch 2/3
+952/952 - 53s - 56ms/step - accuracy: 0.9906 - loss: 0.0792
+Epoch 3/3
+952/952 - 60s - 63ms/step - accuracy: 0.9954 - loss: 0.0566 - val_accuracy: 0.9985 - val_loss: 0.0410
+epoch 1: train 60.5s, val 0.0s
+epoch 2: train 55.9s, val 0.0s
+epoch 3: train 55.6s, val 12.2s, val_acc 0.9985
+4 rows written to /mnt/c/Users/flore/OneDrive/Escritorio/2026-UVG/paralela/p3-paralela/results/runs.csv
+  E1 b64 r5: ok in 3.2 min
+
+bench finished in 77.9 min
