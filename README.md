@@ -9,7 +9,6 @@ original/   original lab notebooks (sequential baseline)
 src/        project code
 results/    run times (runs.csv) and plots
 evidence/   GPU, VRAM and per-core CPU usage logs
-report/     final report
 ```
 
 ## Setup (WSL2 + NVIDIA GPU)

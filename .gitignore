@@ -9,3 +9,6 @@ data/
 *.npz
 *.pkl
 *.keras
+
+# Report is written outside the repo
+report/
