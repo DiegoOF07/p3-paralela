@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Dataset and prepared arrays live outside the repo
+data/
+*.npy
+*.npz
+*.pkl
+*.keras
