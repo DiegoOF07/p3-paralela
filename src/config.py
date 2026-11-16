@@ -19,9 +19,12 @@ SEED = 42
 TARGET_SIZE = (64, 64)
 N_CLASSES = 29
 BATCH_SIZE = 64
+LARGE_BATCHES = (256, 512)
+TUNED_BATCH = 256  # best E4 batch; inherited by E5 and E6
 LEARNING_RATE = 5e-4
 
 EPOCHS = 3
 TIMED_EPOCHS = (2, 3)  # epoch 1 includes graph tracing and warm-up
 REPS_CPU = 3
 REPS_GPU = 5
+IDLE_SECONDS = 15  # GPU baseline sampled before each stage
