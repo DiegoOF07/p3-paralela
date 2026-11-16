@@ -46,14 +46,41 @@ Copy the dataset to the Linux filesystem (reading from `/mnt/c` is very slow):
 
 Use `ASL_DATA_DIR` for a different location.
 
+## Stages
+
+Each stage inherits the previous one and changes a single thing. Every run trains 3 epochs; the reported time is the mean of epochs 2 and 3.
+
+| Stage | Device | Change |
+|---|---|---|
+| E0 | CPU | Original lab code (`ImageDataGenerator`) |
+| E1 | GPU | Same code with the GPU visible |
+| E2 | CPU | Prepared `.npy` arrays with `tf.data` |
+| E3 | GPU | E2 on the GPU |
+| E4 | GPU | Batch 256 and 512 |
+| E5 | GPU | Mixed precision (`mixed_float16`) |
+| E6 | GPU | XLA compilation |
+
+Keras 3 turns XLA on by default when a GPU is present, so E0–E5 disable it explicitly and only E6 enables it.
+
+E2 onward reads `X_train.npy`, `y_train.npy`, `X_val.npy` and `y_val.npy` from `~/data/asl/npy/` (uint8 images of 64×64×3, integer labels following the alphabetical order of the classes).
+
 ## Running
 
 ```bash
-python -m src.train --stage E0 --rep 1   # CPU, original pipeline
-python -m src.train --stage E1 --rep 1   # GPU, original pipeline
+python -m src.train --stage E3 --rep 1           # a single run
+python -m src.bench --stages E0 E2               # CPU stages (slow, best overnight)
+python -m src.bench --stages E1 E3 E4 E5 E6      # GPU stages
+python -m src.bench --dry-run                    # print the run plan
 ```
 
-Each run appends one row per epoch to `results/runs.csv` and logs resource usage to `evidence/<stage>_b<batch>_r<rep>.csv`. `--epochs 1 --no-save` is for quick tests.
+- Each training run appends one row per epoch to `results/runs.csv` and logs resource usage to `evidence/<stage>_b<batch>_r<rep>.csv`.
+- GPU runs also add a `transfer` row: the mean time to copy one batch from host memory to the GPU.
+- Before each stage, `bench.py` records an idle baseline in `evidence/idle_<stage>_b<batch>.csv`.
+- `bench.py` skips runs already in `runs.csv`, so an interrupted night can be resumed by running the same command again.
+- `--synthetic` uses random arrays instead of the `.npy` files and saves nothing; `--epochs 1 --no-save` is for quick tests.
+- Validation only runs after the last epoch, so it doesn't affect the timing.
+
+For GPU measurements, close browsers and apps that use hardware acceleration; the Windows desktop alone already shows up in `nvidia-smi`.
 
 Columns in `runs.csv`:
 
