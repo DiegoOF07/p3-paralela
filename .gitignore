@@ -15,3 +15,6 @@ report/
 
 # Invented data from python -m src.plots --demo
 results/demo/
+
+# Smoke-test resource logs (train.py --no-save)
+evidence/test_*
