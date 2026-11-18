@@ -1,0 +1,3 @@
+etapa_lote,etapa,lote,reps,gpu_util,gpu_util_p95,vram_mb,cpu_total,vram_max_mb,nucleos_ocupados,nucleos,idle_gpu_util,idle_vram_mb,idle_cpu_total
+E0,E0,64,3,2.7721,10.6667,722.9876,84.9503,770,12.0,12,1.9,761.0,0.94
+E1,E1,64,5,48.8669,54.88,1537.7536,13.5332,1551,0.0,12,1.8182,770.0,0.8545

@@ -12,3 +12,6 @@ data/
 
 # Report is written outside the repo
 report/
+
+# Invented data from python -m src.plots --demo
+results/demo/
