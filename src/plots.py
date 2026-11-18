@@ -68,10 +68,10 @@ def _skip(name, why):
     print(f"  skip {name}: {why}")
 
 
-def _device_legend(ax, devices):
+def _device_legend(ax, devices, loc="upper right"):
     from matplotlib.patches import Patch
     handles = [Patch(color=DEVICE_COLOR[d], label=d.upper()) for d in ("cpu", "gpu") if d in devices]
-    ax.legend(handles=handles, loc="upper right")
+    ax.legend(handles=handles, loc=loc)
 
 
 def _bar_labels(ax, bars, texts, pad=3, err=None):
@@ -115,7 +115,7 @@ def fig_speedup(train, out_dir, machine):
     ax.set_ylabel("Speedup frente a E0 (×)")
     ax.set_title("Aceleración acumulada frente al código original (E0)")
     ax.set_ylim(0, train["speedup_vs_E0"].max() * 1.15)
-    _device_legend(ax, set(train["dispositivo"]))
+    _device_legend(ax, set(train["dispositivo"]), loc="upper left")
     return _save(fig, out_dir, "fig_speedup", machine)
 
 
