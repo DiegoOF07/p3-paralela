@@ -1,0 +1,4 @@
+fase,etapa,maquina,dispositivo,lote,repeticion,epoca,segundos,imagenes_por_s,val_acc
+diag,datos_generator,wsl2-rtx3050,gpu,64,1,,49.549,1229.1,
+diag,datos_arrays,wsl2-rtx3050,gpu,64,1,,2.177,27970.7,
+diag,matematica,wsl2-rtx3050,gpu,64,1,,37.376,1629.4,
