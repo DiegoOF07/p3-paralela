@@ -1,0 +1,5 @@
+speedup,t_antes_s,t_despues_s,valor
+Fase 1: preparación secuencial / paralela,,,
+"Fase 2, efecto del GPU: E2 / E3",,,
+Total: E0 / mejor etapa (E1),396.194,55.6431,7.1203
+Mismo código en GPU: E0 / E1,396.194,55.6431,7.1203
