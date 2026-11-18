@@ -1,3 +1,9 @@
 etapa_lote,etapa,lote,cambio,dispositivo,reps,seg_media,seg_std,img_s,val_acc,val_acc_std,speedup_vs_E0,speedup_vs_anterior
-E0,E0,64,Código original del lab (CPU),cpu,3,396.194,1.4562,153.7167,0.947,0.0,1.0,
-E1,E1,64,Mismo código con GPU visible,gpu,5,55.6431,0.9474,1094.85,0.9167,0.1051,7.1203,7.1203
+E0,E0,64.0,Código original del lab (CPU),cpu,3,396.194,1.4562,153.7167,0.947,0.0,1.0,
+E1,E1,64.0,Mismo código con GPU visible,gpu,5,55.6431,0.9474,1094.85,0.9167,0.1051,7.1203,7.1203
+E2,E2,64.0,.npy + tf.data (CPU),cpu,3,304.5667,4.797,199.9833,0.9451,0.0,1.3008,0.1827
+E3,E3,64.0,.npy + tf.data (GPU),gpu,5,38.777,0.4636,1570.73,0.9778,0.0124,10.2172,7.8543
+E4-256,E4,256.0,Lote grande,gpu,5,26.4485,0.288,2302.83,0.9392,0.0103,14.9798,1.4661
+E4-512,E4,512.0,Lote grande,gpu,5,26.1953,3.7884,2382.9,0.0467,0.0017,15.1246,1.0097
+E5,E5,256.0,Precisión mixta,gpu,5,28.5277,0.3835,2135.13,0.9547,0.0366,13.888,0.9182
+E6,E6,256.0,XLA (jit_compile),gpu,5,7.8457,0.0227,7762.39,0.9527,0.0195,50.4982,3.6361

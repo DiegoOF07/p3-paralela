@@ -1,0 +1,3 @@
+etapa,reps,seg_media,seg_std,img_s,speedup
+secuencial,3,54.2287,0.1962,1363.6667,1.0
+paralelo,3,9.2887,0.6457,7986.5667,5.8382
