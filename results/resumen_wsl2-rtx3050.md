@@ -60,3 +60,23 @@
 | E4-512 | 5 | 5.3 | 90.0 | 96.0 | 706.8 | 4,481 | 3.2 | 0.0 |
 | E5 | 5 | 1.8 | 75.0 | 87.0 | 718.0 | 1,932 | 4.7 | 0.0 |
 | E6 | 5 | 1.0 | 47.7 | 91.0 | 711.0 | 2,881 | 9.3 | 0.0 |
+
+## Kernel de convolución en Numba (ms por llamada)
+
+| etapa | dispositivo | lote | reps | ms_media | ms_std |
+| --- | --- | --- | --- | --- | --- |
+| cpu_loop | cpu | 64 | 5 | 216.266 | 20.082 |
+| cpu_numpy | cpu | 64 | 5 | 283.536 | 66.893 |
+| h2d | gpu | 64 | 5 | 3.263 | 1.326 |
+| gpu_naive | gpu | 64 | 5 | 5.861 | 0.088 |
+| gpu_shared | gpu | 64 | 5 | 1.626 | 0.023 |
+| d2h | gpu | 64 | 5 | 8.774 | 0.249 |
+
+### Speedup del kernel
+
+| kernel | referencia | solo_kernel | con_transferencias |
+| --- | --- | --- | --- |
+| gpu_naive | cpu_loop | 36.90 | 12.08 |
+| gpu_naive | cpu_numpy | 48.38 | 15.84 |
+| gpu_shared | cpu_loop | 133.01 | 15.83 |
+| gpu_shared | cpu_numpy | 174.38 | 20.75 |
