@@ -88,3 +88,38 @@ fase, etapa, maquina, dispositivo, lote, repeticion, epoca, segundos, imagenes_p
 ```
 
 `segundos` only counts the training part of the epoch, without validation.
+
+## Analysis
+
+`src/analysis.py` summarizes the CSVs and `src/plots.py` writes the tables and figures for the report. Neither imports TensorFlow, so they run on any laptop.
+
+```bash
+python -m src.plots                                    # official machine (MACHINE_NAME, default wsl2-rtx3050)
+python -m src.plots --machine colab-t4 --runs colab/runs.csv --evidence colab/evidence
+python -m src.plots --all-machines                     # one set of outputs per machine found
+python -m src.plots --demo                             # invented data in results/demo/ (git-ignored)
+```
+
+- Rows are always filtered by `fase` and `maquina` before grouping, and grouped by `(etapa, lote)` because E4 runs with two batch sizes.
+- Epoch time: per repetition, the mean of epochs 2 and 3; then mean and standard deviation across repetitions. `val_acc` comes from epoch 3.
+- Reported speedups: phase 1 (sequential / parallel), GPU effect (E2 / E3), total (E0 / fastest stage) and E0 / E1.
+- Resource figures read `evidence/`, skip the first 5 s of each run (start-up) and compare against the idle baseline.
+- Outputs go to `results/`: `resumen_<machine>.md` (every table in Markdown for the report), `tabla_*_<machine>.csv` and `fig_*_<machine>.png`. Figures without data yet are skipped with a message.
+
+## CUDA Python kernel (Numba)
+
+`src/numba_conv.py` writes the first convolution of CNN Medium (3×3, 3 → 32 channels, ReLU) as hand-written CUDA kernels, to show how the work maps to threads, blocks and grids:
+
+| Version | Mapping |
+|---|---|
+| `gpu_naive` | one thread per output pixel and filter; block 16×16, grid (W/16, H/16, N·32) |
+| `gpu_shared` | one thread per output pixel for all 32 filters; the 18×18 input tile (with halo) and the weights live in shared memory; grid (W/16, H/16, N) |
+
+Both are checked against a sequential `@njit` loop and a vectorized NumPy version on the same batch (the first 64 images of `X_train.npy`, or random images with `--synthetic`). Host-to-device and device-to-host copies are timed separately.
+
+```bash
+python -m src.numba_conv                                        # GPU; appends to results/numba_conv.csv
+NUMBA_ENABLE_CUDASIM=1 python -m src.numba_conv --small --no-save  # correctness check without a GPU
+```
+
+On Linux, `numba-cuda[cu12]` provides the CUDA target. Without a GPU, the simulator only checks correctness; its times are meaningless and nothing is saved.
